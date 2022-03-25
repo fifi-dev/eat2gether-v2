@@ -43,8 +43,8 @@
       <p
         class="hover:bg-gray-700 delay-50 duration-100 p-2 rounded-lg my-4 mx-3"
       >
-        <span class="font-semibold">Kim Taeyeon</span> and
-        <span class="font-semibold">3 others</span> have birthdays today.
+        <span class="font-semibold">Vue js</span> course with
+        <span class="font-semibold">Quentin GUERRIER</span>
       </p>
     </div>
 
@@ -58,7 +58,7 @@
       <!-- Details Button -->
       <div class="flex justify-center">
         <button
-          class="bg-blue-700 delay-50 duration-100 px-3 py-1 text-gray-200"
+          class="bg-blue-500 delay-50 duration-100 px-3 py-1 text-gray-200"
         >
           Details
         </button>
