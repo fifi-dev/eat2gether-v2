@@ -19,14 +19,18 @@
                 <label class="leading-loose text-left"> Name</label>
                 <input
                   type="text"
+                  name="name"
+                  id="name"
+                  autocomplete="name"
+                  v-model="name"
                   class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                  placeholder="Event title"
+                  placeholder="Vue.js"
                 />
               </div>
-
+              <!-- Teacher NAME -->
               <div class="flex flex-col">
                 <label class="leading-loose text-left"> Teacher</label>
-                <select
+                <!--  <select
                   class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   name="teacher"
                   id="teachert"
@@ -34,13 +38,26 @@
                   <option value="">Teacher</option>
                   <option value="dog">Pierre GRIMAUD</option>
                   <option value="cat">Quentin GUERRIER</option>
-                </select>
+                </select> -->
+
+                <input
+                  type="text"
+                  name="teacher"
+                  id="teacher"
+                  v-model="teacher"
+                  autocomplete="name"
+                  placeholder="Marine dupont"
+                  class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                />
               </div>
               <!-- IMG URL -->
               <div class="flex flex-col">
                 <label class="leading-loose text-left my-1">Image URL</label>
                 <input
+                  id="img_url"
+                  name="img_url"
                   type="text"
+                  v-model="img_url"
                   class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   placeholder="Optional"
                 />
@@ -54,8 +71,11 @@
                   >
                     <input
                       type="date"
+                      name="start_at"
+                      id="start_at"
+                      v-model="start_at"
                       class="px-8 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                      placeholder="25/02/2020"
+                      placeholder="25/03/2022"
                     />
                   </div>
                 </div>
@@ -67,27 +87,33 @@
                   >
                     <input
                       type="date"
+                      name="end_at"
+                      id="end_at"
+                      v-model="end_at"
                       class="px-8 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                      placeholder="26/02/2020"
+                      placeholder="25/03/2022"
                     />
                   </div>
                 </div>
               </div>
               <!-- DESCRIPTION -->
               <div class="flex flex-col">
-                <label class="leading-loose text-left my-1"
-                  >Event Description</label
-                >
+                <label class="leading-loose text-left my-1"> Description</label>
                 <textarea
                   id="description"
+                  name="description"
+                  type="text"
+                  v-model="description"
                   class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   placeholder="Optional"
                 ></textarea>
               </div>
             </div>
+            <!-- Cancel & SAVE -->
             <div class="pt-4 flex items-center space-x-4">
               <button
-                class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none"
+                class="flex justify-center items-center w-full text-red-900 px-4 py-3 rounded-md focus:outline-none hover:bg-red-400 hover:text-white"
+                @click="goTo('home')"
               >
                 <svg
                   class="w-6 h-6 mr-3"
@@ -106,9 +132,10 @@
                 Cancel
               </button>
               <button
-                class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                class="bg-green-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                @click="submit()"
               >
-                Create
+                Add Course
               </button>
             </div>
           </div>
@@ -117,3 +144,41 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      name: '',
+      teacher: '',
+      description: '',
+      img_url: '',
+      start_at: '',
+      end_at: '',
+    };
+  },
+  methods: {
+    goTo(name) {
+      this.$router.push({ name: name });
+    },
+    submit() {},
+    async submit() {
+      const { data, error } = await this.$supabase.from('courses').insert([
+        {
+          name: this.name,
+          description: this.description,
+          teacher: this.teacher,
+          img_url: this.img_url,
+          start_at: this.start_at,
+          end_at: this.end_at,
+        },
+      ]);
+      if (data) {
+        this.goTo('home');
+      } else {
+        console.log(error);
+      }
+    },
+  },
+};
+</script>
