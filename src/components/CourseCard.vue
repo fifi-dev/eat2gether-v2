@@ -40,9 +40,7 @@
 
     <!-- Content -->
     <div class="text-gray-200 font-light">
-      <p
-        class="hover:bg-gray-700 delay-50 duration-100 p-2 rounded-lg my-4 mx-3"
-      >
+      <p class="delay-50 duration-100 p-2 rounded-lg my-4 mx-3">
         <span class="font-semibold">Vue js</span> course with
         <span class="font-semibold">Quentin GUERRIER</span>
       </p>
