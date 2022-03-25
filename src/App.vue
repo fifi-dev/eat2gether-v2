@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-gray-900 h-screen">
+  <div id="app">
     <Header />
     <!-- <nav>
       <router-link to="/">Home</router-link> |
@@ -21,6 +21,9 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  background-color: #0d1720;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
