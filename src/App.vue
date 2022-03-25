@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-gray-900">
+  <div id="app" class="bg-gray-900 h-screen">
     <Header />
     <!-- <nav>
       <router-link to="/">Home</router-link> |
