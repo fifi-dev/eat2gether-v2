@@ -1,6 +1,6 @@
 <template>
   <!-- Card -->
-  <card class="bg-gray-800 rounded-lg w-72 mx-6 md:mb-6">
+  <card class="bg-gray-800 rounded-lg w-72 h-56 mx-6 md:mb-6">
     <!-- Header -->
     <div class="grid grid-cols-3 bg-white text-black items-center px-5 py-3">
       <!-- Header Title -->
