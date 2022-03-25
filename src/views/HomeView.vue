@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <div class="h-screen flex items-center justify-center bg-gray-900">
+    <div class="h-screen flex items-center justify-center">
       <CourseCard />
       <CourseCard />
     </div>

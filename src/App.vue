@@ -1,12 +1,24 @@
 <template>
-  <div id="app">
-    <nav>
+  <div id="app" class="bg-gray-900">
+    <Header />
+    <!-- <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    </nav> -->
+    <router-view />
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import Header from '@/components/Header.vue';
+
+export default {
+  components: {
+    Header,
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
