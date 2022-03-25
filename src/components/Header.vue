@@ -5,16 +5,16 @@
     >
       <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
         <router-link
-          class="mr-5 text-gray-100 hover:text-gray-300 cursor-pointer border-b border-transparent hover:border-indigo-600"
+          class="mr-5 text-gray-100 hover:text-green-300 cursor-pointer"
           to="/"
           >Home</router-link
         >
-        <a
-          class="mr-5 text-gray-100 hover:text-gray-300 cursor-pointer border-b border-transparent hover:border-indigo-600"
-          >New product</a
+        <router-link
+          class="mr-5 text-gray-100 hover:text-green-300 cursor-pointer"
+          to="/new-course"
+          >Add Course</router-link
         >
-        <a
-          class="mr-5 text-gray-100 hover:text-gray-300 cursor-pointer border-b border-transparent hover:border-indigo-600"
+        <a class="mr-5 text-gray-100 hover:text-green-300 cursor-pointer"
           >Account</a
         >
       </nav>
