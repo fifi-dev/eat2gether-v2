@@ -25,6 +25,11 @@ const routes = [
     name: 'newCourse',
     component: NewCourse,
   },
+  {
+    path: '/update/:id',
+    name: 'updateCourse',
+    component: NewCourse,
+  },
 ];
 
 const router = new VueRouter({

@@ -1,6 +1,6 @@
 <template>
   <!-- Card -->
-  <card class="bg-gray-800 rounded-lg w-72 mx-6">
+  <card class="bg-gray-800 rounded-lg w-72 mx-6 md:mb-6">
     <!-- Header -->
     <div class="grid grid-cols-3 bg-white text-black items-center px-5 py-3">
       <!-- Header Title -->
@@ -57,6 +57,7 @@
       <div class="flex justify-center">
         <button
           class="bg-blue-500 delay-50 duration-100 px-3 py-1 text-gray-200"
+          @click="goTo('updateCourse')"
         >
           Details
         </button>
@@ -68,6 +69,16 @@
 export default {
   props: {
     data: Object,
+  },
+  methods: {
+    goTo(name) {
+      this.$router.push({
+        name: name,
+        params: {
+          id: this.data.id,
+        },
+      });
+    },
   },
 };
 </script>

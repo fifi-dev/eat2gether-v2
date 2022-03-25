@@ -7,7 +7,13 @@
         <div class="max-w-md mx-auto">
           <div class="flex items-center space-x-5">
             <div class="font-semibold text-xl text-gray-700">
-              <h2 class="">Add an new course</h2>
+              <h2 class="">
+                {{
+                  $route.name == 'updateCourse'
+                    ? 'Update Course'
+                    : 'Add an new course'
+                }}
+              </h2>
             </div>
           </div>
           <div class="divide-y divide-gray-200">
@@ -22,7 +28,7 @@
                   name="name"
                   id="name"
                   autocomplete="name"
-                  v-model="name"
+                  v-model="course.name"
                   class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   placeholder="Vue.js"
                 />
@@ -44,7 +50,7 @@
                   type="text"
                   name="teacher"
                   id="teacher"
-                  v-model="teacher"
+                  v-model="course.teacher"
                   autocomplete="name"
                   placeholder="Marine dupont"
                   class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
@@ -57,7 +63,7 @@
                   id="img_url"
                   name="img_url"
                   type="text"
-                  v-model="img_url"
+                  v-model="course.img_url"
                   class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   placeholder="Optional"
                 />
@@ -73,7 +79,7 @@
                       type="date"
                       name="start_at"
                       id="start_at"
-                      v-model="start_at"
+                      v-model="course.start_at"
                       class="px-8 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                       placeholder="25/03/2022"
                     />
@@ -89,7 +95,7 @@
                       type="date"
                       name="end_at"
                       id="end_at"
-                      v-model="end_at"
+                      v-model="course.end_at"
                       class="px-8 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                       placeholder="25/03/2022"
                     />
@@ -103,7 +109,7 @@
                   id="description"
                   name="description"
                   type="text"
-                  v-model="description"
+                  v-model="course.description"
                   class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   placeholder="Optional"
                 ></textarea>
@@ -132,6 +138,14 @@
                 Cancel
               </button>
               <button
+                v-if="$route.name == 'updateCourse'"
+                class="bg-green-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                @click="update()"
+              >
+                Update Course
+              </button>
+              <button
+                v-else
                 class="bg-green-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
                 @click="submit()"
               >
@@ -149,32 +163,57 @@
 export default {
   data() {
     return {
-      name: '',
-      teacher: '',
-      description: '',
-      img_url: '',
-      start_at: '',
-      end_at: '',
+      course: {
+        name: '',
+        teacher: '',
+        description: '',
+        img_url: '',
+        start_at: '',
+        end_at: '',
+      },
     };
+  },
+  mounted() {
+    if (this.$route.name == 'updateCourse') {
+      this.getCourse();
+    }
   },
   methods: {
     goTo(name) {
       this.$router.push({ name: name });
     },
-    submit() {},
+
+    async update() {
+      const { data, error } = await this.$supabase
+        .from('courses')
+        .update(this.course)
+        .match({ id: this.$route.params.id });
+      if (data) {
+        this.$router.push({ name: 'Courses' });
+      } else {
+        console.log(error);
+      }
+    },
     async submit() {
-      const { data, error } = await this.$supabase.from('courses').insert([
-        {
-          name: this.name,
-          description: this.description,
-          teacher: this.teacher,
-          img_url: this.img_url,
-          start_at: this.start_at,
-          end_at: this.end_at,
-        },
-      ]);
+      const { data, error } = await this.$supabase
+        .from('courses')
+        .insert(this.course);
       if (data) {
         this.goTo('home');
+      } else {
+        console.log(error);
+      }
+    },
+
+    async getCourse() {
+      const { data, error } = await this.$supabase
+        .from('courses')
+        .select()
+        .match({ id: this.$route.params.id })
+        .single();
+      if (data) {
+        this.course = data;
+        console.log(data);
       } else {
         console.log(error);
       }
