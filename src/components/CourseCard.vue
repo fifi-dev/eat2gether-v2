@@ -16,7 +16,7 @@
             d="M19.197 1.608l.003-.006h-4.425L12 6.4v.002l-2.772-4.8H4.803v.005H0l12 20.786L24 1.608"
           />
         </svg>
-        <p>Vue js</p>
+        <p>{{ data.name }}</p>
       </div>
 
       <!-- Delete Button -->
@@ -41,8 +41,8 @@
     <!-- Content -->
     <div class="text-gray-200 font-light">
       <p class="delay-50 duration-100 p-2 rounded-lg my-4 mx-3">
-        <span class="font-semibold">Vue js</span> course with
-        <span class="font-semibold">Quentin GUERRIER</span>
+        <span class="font-semibold">{{ data.name }}</span> course with
+        <span class="font-semibold">{{ data.teacher }}</span>
       </p>
     </div>
 
@@ -50,7 +50,7 @@
     <div class="grid grid-cols-3 items-center px-5 py-3">
       <!-- Course Date-->
       <div class="col-span-2 flex text-gray-500 flex-row gap-3">
-        <p>23/03/2021</p>
+        <p>{{ data.start_at }}</p>
       </div>
 
       <!-- Details Button -->
