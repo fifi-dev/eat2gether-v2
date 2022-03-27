@@ -36,22 +36,32 @@
         <div class="bg-red-600 mx-4 text-white p-5" v-if="errorMsg">
           <p>{{ errorMsg }}</p>
         </div>
+        <!-- First Name -->
+        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+          <input
+            class="pl-2 outline-none border-none"
+            type="text"
+            name="first_name"
+            required
+            id="first_name"
+            v-model="first_name"
+            placeholder="First Name"
+          />
+        </div>
+        <!-- First Name -->
+        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+          <input
+            class="pl-2 outline-none border-none"
+            type="text"
+            name="last_name"
+            required
+            id="last_name"
+            v-model="last_name"
+            placeholder="Last Name"
+          />
+        </div>
         <!-- Email -->
         <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-            />
-          </svg>
           <input
             class="pl-2 outline-none border-none"
             type="text"
@@ -85,29 +95,18 @@
             placeholder="Password"
           />
         </div>
-        <!--  confirm password -->
-        <!--  <div class="flex items-center border-2 py-2 px-3 mt-4 rounded-2xl">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-gray-400"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+        <!--  select password -->
+        <div class="py-2 mt-4">
+          <select
+            v-model="role"
+            class="w-full bg-gray-100 py-2 pl-2"
+            name="role"
+            id="role"
           >
-            <path
-              fill-rule="evenodd"
-              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          <input
-            class="pl-2 outline-none border-none"
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-            v-model="confirmPassword"
-            placeholder="confirm password"
-          />
-        </div> -->
+            <option class="" value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+        </div>
         <!-- btn submit -->
         <button
           @click="signUp()"
@@ -125,13 +124,17 @@
 </template>
 
 <script>
+import user_data from '../store';
+
 export default {
   name: 'SignUp',
   data() {
     return {
+      first_name: '',
+      last_name: '',
+      role: '',
       email: '',
       password: '',
-      confirmPassword: '',
       errorMsg: '',
     };
   },
@@ -143,6 +146,12 @@ export default {
       const { user, error } = await this.$supabase.auth.signUp({
         email: this.email,
         password: this.password,
+      });
+      const { data } = await this.$supabase.from('users').insert({
+        first_name: this.first_name,
+        last_name: this.last_name,
+        role: this.role,
+        auth_id: user.id,
       });
       if (user) {
         this.goTo('home');
