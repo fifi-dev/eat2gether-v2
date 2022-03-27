@@ -21,7 +21,10 @@
 
       <!-- Delete Button -->
       <div class="flex justify-end">
-        <button class="rounded-full hover:bg-red-700 delay-50 duration-100 p-1">
+        <button
+          class="rounded-full hover:bg-red-400 delay-50 duration-100 p-1"
+          @click="$emit('on-delete')"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"

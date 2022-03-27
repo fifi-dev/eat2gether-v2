@@ -4,6 +4,7 @@
       <CourseCard
         :data="course"
         :key="'course-' + course.id"
+        @on-delete="deleteCourse(course.id)"
         v-for="course in courses"
       />
     </div>
@@ -28,6 +29,18 @@ export default {
     this.getAllCourses();
   },
   methods: {
+    async deleteCourse(courseId) {
+      const { data, error } = await this.$supabase
+        .from('courses')
+        .delete()
+        .eq('id', courseId);
+      if (data) {
+        this.courses = data;
+        location.reload();
+      } else {
+        console.log(error);
+      }
+    },
     async getAllCourses() {
       const { data, error } = await this.$supabase.from('courses').select();
       if (data) {
