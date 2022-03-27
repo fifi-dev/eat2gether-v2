@@ -53,7 +53,7 @@
     <div class="grid grid-cols-3 items-center px-5 py-3">
       <!-- Course Date-->
       <div class="col-span-2 flex text-gray-500 flex-row gap-3">
-        <p>{{ data.start_at }}</p>
+        <p>{{ data.start_at | formatDate }}</p>
       </div>
 
       <!-- Details Button -->

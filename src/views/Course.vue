@@ -28,8 +28,8 @@
             </p>
           </div>
           <div>
-            <p>Start date : {{ course.start_at }}</p>
-            <p>Start date : {{ course.end_at }}</p>
+            <p>Start date : {{ course.start_at | formatDate }}</p>
+            <p>End date : {{ course.end_at | formatDate }}</p>
           </div>
         </div>
       </div>
