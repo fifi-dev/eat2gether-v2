@@ -14,8 +14,10 @@
           to="/new-course"
           >Add Course</router-link
         >
-        <a class="mr-5 text-gray-100 hover:text-green-300 cursor-pointer"
-          >Account</a
+        <router-link
+          class="mr-5 text-gray-100 hover:text-green-300 cursor-pointer"
+          to="/account"
+          >Account</router-link
         >
       </nav>
       <a
