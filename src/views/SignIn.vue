@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen flex">
     <div
-      class="flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center"
+      class="flex w-1/2 bg-gradient-to-tr from-blue-900 to-gray-900 i justify-around items-center"
     >
       <div>
         <a
@@ -34,7 +34,7 @@
         <h1 class="text-gray-800 font-bold text-2xl mb-1">Login</h1>
         <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back !</p>
         <!-- Email -->
-        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+        <div class="flex items-center border-2 py-2 px-3 mb-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5 text-gray-400"
@@ -60,7 +60,7 @@
           />
         </div>
         <!-- password -->
-        <div class="flex items-center border-2 py-2 px-3 rounded-2xl">
+        <div class="flex items-center border-2 py-2 px-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5 text-gray-400"
@@ -85,7 +85,7 @@
         <!-- btn submit -->
         <button
           @click="signIn()"
-          class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
+          class="block w-full bg-indigo-600 mt-4 py-2 text-white font-semibold mb-2"
         >
           Sign In
         </button>
