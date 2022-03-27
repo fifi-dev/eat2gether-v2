@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
-    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="relative py-3 mt-14 sm:max-w-xl sm:mx-auto">
       <div
         class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10"
       >
