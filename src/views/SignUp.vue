@@ -125,9 +125,13 @@
 
 <script>
 import user_data from '../store';
-
+import Snack from '@/components/Snack.vue';
+import { mapActions } from 'vuex';
 export default {
   name: 'SignUp',
+  components: {
+    Snack,
+  },
   data() {
     return {
       first_name: '',
@@ -139,6 +143,9 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      snack: 'snack/snack',
+    }),
     goTo(name) {
       this.$router.push({ name: name });
     },
@@ -156,7 +163,7 @@ export default {
       if (user) {
         this.goTo('home');
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
   },

@@ -14,10 +14,13 @@
 <script>
 // @ is an alias to /src
 import CourseCard from '@/components/CourseCard.vue';
+import Snack from '@/components/Snack.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'HomeView',
   components: {
+    Snack,
     CourseCard,
   },
   data() {
@@ -29,6 +32,9 @@ export default {
     this.getAllCourses();
   },
   methods: {
+    ...mapActions({
+      snack: 'snack/snack',
+    }),
     async deleteCourse(courseId) {
       const { data, error } = await this.$supabase
         .from('courses')
@@ -38,7 +44,7 @@ export default {
         this.courses = data;
         location.reload();
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
     async getAllCourses() {
@@ -46,7 +52,7 @@ export default {
       if (data) {
         this.courses = data;
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
   },

@@ -160,7 +160,12 @@
 </template>
 
 <script>
+import Snack from '@/components/Snack.vue';
+import { mapActions } from 'vuex';
 export default {
+  components: {
+    Snack,
+  },
   data() {
     return {
       course: {
@@ -179,6 +184,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      snack: 'snack/snack',
+    }),
     goTo(name) {
       this.$router.push({ name: name });
     },
@@ -191,7 +199,7 @@ export default {
       if (data) {
         this.$router.push({ name: 'Courses' });
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
     async submit() {
@@ -201,7 +209,7 @@ export default {
       if (data) {
         this.goTo('home');
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
 
@@ -215,7 +223,7 @@ export default {
         this.course = data;
         console.log(data);
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
   },

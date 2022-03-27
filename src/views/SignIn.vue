@@ -101,10 +101,14 @@
   </div>
 </template>
 
-<
 <script>
+import Snack from '@/components/Snack.vue';
+import { mapActions } from 'vuex';
 export default {
   name: 'SignIn',
+  components: {
+    Snack,
+  },
   data() {
     return {
       email: '',
@@ -114,6 +118,9 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      snack: 'snack/snack',
+    }),
     goTo(name) {
       this.$router.push({ name: name });
     },
@@ -126,7 +133,7 @@ export default {
       if (user) {
         this.goTo('home');
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
   },
