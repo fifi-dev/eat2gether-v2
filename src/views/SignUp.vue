@@ -21,6 +21,7 @@
           have an account:
         </p>
         <button
+          @click="goTo('signIn')"
           type="submit"
           class="block w-28 bg-white text-indigo-800 mt-4 py-2 font-bold mb-2"
         >
