@@ -6,6 +6,7 @@ import NewCourse from '../views/NewCourse.vue';
 import SignIn from '../views/SignIn.vue';
 // Register
 import SignUp from '../views/SignUp.vue';
+import Course from '../views/Course.vue';
 
 import { supabase } from '../supabase';
 import store from '../store';
@@ -45,6 +46,14 @@ const routes = [
     path: '/update/:id',
     name: 'updateCourse',
     component: NewCourse,
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: '/courses/:id',
+    name: 'courseDetail',
+    component: Course,
     meta: {
       requireAuth: true,
     },

@@ -1,5 +1,7 @@
 <template>
-  <header class="text-gray-100 bg-gray-900 body-font shadow w-full">
+  <header
+    class="fixed top-0 z-40 text-gray-100 bg-gray-900 body-font shadow w-full"
+  >
     <div
       class="container mx-auto flex flex-wrap px-5 py-2 flex-col md:flex-row items-center"
     >

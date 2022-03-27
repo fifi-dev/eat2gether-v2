@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="h-screen flex flex-wrap items-center justify-center">
+    <div class="h-screen pt-20 flex flex-wrap items-center justify-center">
       <CourseCard
         :data="course"
         :user="userInfo"
