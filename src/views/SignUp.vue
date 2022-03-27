@@ -162,6 +162,8 @@ export default {
         auth_id: user.id,
       });
       if (user) {
+        this.snack('connected successfully with : ' + user.email);
+
         this.goTo('home');
       } else {
         this.snack(error);
