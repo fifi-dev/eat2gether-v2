@@ -11,7 +11,7 @@ export default {
     },
   },
 
-  mutators: {
+  mutations: {
     SET_SNACK(state, text) {
       state.snack = text;
     },
@@ -20,6 +20,10 @@ export default {
   actions: {
     snack({ commit }, text) {
       commit('SET_SNACK', text);
+
+      setTimeout(() => {
+        commit('SET_SNACK', null);
+      }, 2000);
     },
   },
 };
