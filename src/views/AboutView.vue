@@ -25,16 +25,16 @@
           <p class="text-gray-400 mt-2">you are a {{ userInfo.role }}</p>
         </div>
         <hr class="mt-6" />
-        <div class="flex bg-gray-50">
+        <div class="bg-gray-50">
           <div
-            class="text-center w-1/2 bg-red-100 p-4 hover:bg-red-300 cursor-pointer"
+            class="text-center w-full bg-red-100 p-4 hover:bg-red-300 cursor-pointer"
           >
-            <button>Sign out</button>
+            <button @click="signOut">Sign out</button>
           </div>
-          <div class="border"></div>
-          <div class="text-center w-1/2 p-4 hover:bg-gray-100 cursor-pointer">
+          <!--   <div class="border"></div>
+         <div class="text-center w-1/2 p-4 hover:bg-gray-100 cursor-pointer">
             <button>Edit profile</button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -66,6 +66,14 @@ export default {
         console.log(data);
         this.userInfo = data;
       } else {
+        console.log(error);
+      }
+    },
+    async signOut() {
+      const { error } = await this.$supabase.auth.signOut();
+      location.reload();
+
+      if (error) {
         console.log(error);
       }
     },
