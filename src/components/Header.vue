@@ -36,7 +36,7 @@
       <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
         <button
           @click="signOut"
-          class="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg"
+          class="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3"
         >
           Sign out
         </button>

@@ -121,7 +121,7 @@
             <!-- Cancel & SAVE -->
             <div class="pt-4 flex items-center space-x-4">
               <button
-                class="flex justify-center items-center w-full text-red-900 px-4 py-3 rounded-md focus:outline-none hover:bg-red-400 hover:text-white"
+                class="flex justify-center items-center w-full text-red-900 px-4 py-3 focus:outline-none hover:bg-red-400 hover:text-white"
                 @click="goTo('home')"
               >
                 <svg
@@ -142,14 +142,14 @@
               </button>
               <button
                 v-if="$route.name == 'updateCourse'"
-                class="bg-green-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                class="bg-green-500 flex justify-center items-center w-full text-white px-4 py-3 focus:outline-none"
                 @click="update()"
               >
                 Update Course
               </button>
               <button
                 v-else
-                class="bg-green-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
+                class="bg-green-500 flex justify-center items-center w-full text-white px-4 py-3 focus:outline-none"
                 @click="submit()"
               >
                 Add Course
