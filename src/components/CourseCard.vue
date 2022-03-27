@@ -60,7 +60,7 @@
       <div class="flex justify-center">
         <button
           class="bg-blue-500 delay-50 duration-100 px-3 py-1 text-gray-200"
-          @click="goTo('updateCourse')"
+          @click="goTo('courseDetail')"
         >
           Details
         </button>
