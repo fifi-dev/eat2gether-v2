@@ -126,7 +126,7 @@
 
 <script>
 export default {
-  name: 'SignIn',
+  name: 'SignUp',
   data() {
     return {
       email: '',
@@ -136,13 +136,16 @@ export default {
     };
   },
   methods: {
+    goTo(name) {
+      this.$router.push({ name: name });
+    },
     async signUp() {
       const { user, error } = await this.$supabase.auth.signUp({
         email: this.email,
         password: this.password,
       });
       if (user) {
-        console.log(user);
+        this.goTo('home');
       } else {
         console.log(error);
       }

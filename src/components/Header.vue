@@ -46,6 +46,8 @@ export default {
   methods: {
     async signOut() {
       const { error } = await this.$supabase.auth.signOut();
+      location.reload();
+
       if (error) {
         console.log(error);
       }

@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="flex w-1/2 justify-center items-center bg-white">
-      <form @submit.prevent="login" class="bg-white">
+      <div class="bg-white">
         <h1 class="text-gray-800 font-bold text-2xl mb-1">Login</h1>
         <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back !</p>
         <!-- error message -->
@@ -87,7 +87,7 @@
         </div>
         <!-- btn submit -->
         <button
-          type="submit"
+          @click="signIn()"
           class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
         >
           Sign In
@@ -96,39 +96,39 @@
           Don't have an account ?
           <span class="text-green text-bold"> Sign Up</span></router-link
         >
-      </form>
+      </div>
     </div>
   </div>
 </template>
 
+<
 <script>
-// @ is an alias to /src
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-
 export default {
   name: 'SignIn',
-  setup() {
-    const router = useRouter();
-    const email = ref(null);
-    const password = ref(null);
-    const errorMsg = ref(null);
-    const login = async () => {
-      try {
-        const { error } = await $supabase.auth.signIn({
-          email: email.value,
-          password: password.value,
-        });
-        if (error) throw error;
-        router.push({ name: 'home' });
-      } catch (error) {
-        errorMsg.value = `Error: ${error.message}`;
-        setTimeout(() => {
-          errorMsg.value = null;
-        }, 5000);
-      }
+  data() {
+    return {
+      email: '',
+      password: '',
+      confirmPassword: '',
+      errorMsg: '',
     };
-    return { email, password, errorMsg, login };
+  },
+  methods: {
+    goTo(name) {
+      this.$router.push({ name: name });
+    },
+
+    async signIn() {
+      const { user, error } = await this.$supabase.auth.signIn({
+        email: this.email,
+        password: this.password,
+      });
+      if (user) {
+        this.goTo('home');
+      } else {
+        console.log(error);
+      }
+    },
   },
 };
 </script>

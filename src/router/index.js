@@ -18,7 +18,7 @@ const routes = [
     name: 'home',
     component: HomeView,
     meta: {
-      requireAuth: false,
+      requireAuth: true,
     },
   },
   {
@@ -30,7 +30,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
     meta: {
-      requireAuth: false,
+      requireAuth: true,
     },
   },
   {
@@ -46,7 +46,7 @@ const routes = [
     name: 'updateCourse',
     component: NewCourse,
     meta: {
-      requireAuth: false,
+      requireAuth: true,
     },
   },
   {
@@ -79,7 +79,7 @@ router.beforeEach(async (to, from, next) => {
   if (user) {
     next();
   } else if (to.meta.requireAuth && !user) {
-    next({ name: 'about' });
+    next({ name: 'signIn' });
   } else {
     next();
   }
