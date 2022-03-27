@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import snack from './snack';
 
 Vue.use(Vuex);
 
@@ -18,5 +19,7 @@ export default new Vuex.Store({
       commit('setUser', payload);
     },
   },
-  modules: {},
+  modules: {
+    snack,
+  },
 });

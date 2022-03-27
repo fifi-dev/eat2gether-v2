@@ -5,6 +5,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </nav> -->
+    <button @click.prevent="sn">Trigger Snack</button>
     <router-view />
   </div>
 </template>
@@ -12,10 +13,19 @@
 <script>
 // @ is an alias to /src
 import Header from '@/components/Header.vue';
+import { mapActions } from 'vuex';
 
 export default {
   components: {
     Header,
+  },
+  methods: {
+    ...mapActions({
+      snack: 'snack/snack',
+    }),
+    doSomething() {
+      this.snack('This is a snack');
+    },
   },
 };
 </script>
