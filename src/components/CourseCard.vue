@@ -20,7 +20,7 @@
       </div>
 
       <!-- Delete Button -->
-      <div class="flex justify-end" v-if="user.role == teacher">
+      <div class="flex justify-end" v-if="userInfo.role == 'teacher'">
         <button
           class="rounded-full hover:bg-red-400 delay-50 duration-100 p-1"
           @click="$emit('on-delete')"
@@ -69,10 +69,19 @@
   </div>
 </template>
 <script>
+import { supabase } from '../supabase';
+
 export default {
   props: {
     data: Object,
-    user: Object,
+  },
+  data() {
+    return {
+      userInfo: {},
+    };
+  },
+  mounted() {
+    this.UserInfo();
   },
   methods: {
     goTo(name) {
@@ -82,6 +91,19 @@ export default {
           id: this.data.id,
         },
       });
+    },
+    async UserInfo() {
+      let user = await supabase.auth.user();
+      const { data, error } = await this.$supabase
+        .from('users')
+        .select()
+        .match({ auth_id: user.id })
+        .single();
+      if (data) {
+        this.userInfo = data;
+      } else {
+        console.log(error);
+      }
     },
   },
 };

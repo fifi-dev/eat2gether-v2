@@ -4,7 +4,7 @@
       <div
         class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10"
       >
-        <div v-if="userInfo.role == teacher" class="max-w-md mx-auto">
+        <div v-if="userInfo.role !== 'teacher'" class="max-w-md mx-auto">
           <p>Only Teacher can access this page</p>
         </div>
         <div v-else class="max-w-md mx-auto">
@@ -165,6 +165,8 @@
 <script>
 import Snack from '@/components/Snack.vue';
 import { mapActions } from 'vuex';
+import { supabase } from '../supabase';
+
 export default {
   components: {
     Snack,
@@ -180,12 +182,14 @@ export default {
         end_at: '',
       },
       userInfo: {},
+      teacher: 'teacher',
     };
   },
   mounted() {
     if (this.$route.name == 'updateCourse') {
       this.getCourse();
     }
+    this.UserInfo();
   },
   methods: {
     ...mapActions({
@@ -233,7 +237,6 @@ export default {
 
     async UserInfo() {
       let user = await supabase.auth.user();
-
       const { data, error } = await this.$supabase
         .from('users')
         .select()
@@ -242,6 +245,7 @@ export default {
       if (data) {
         console.log(data);
         this.userInfo = data;
+        console.log(data);
       } else {
         console.log(error);
       }
