@@ -2,6 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import NewCourse from '../views/NewCourse.vue';
+// login
+import SignIn from '../views/SignIn.vue';
+// Register
+import SignUp from '../views/SignUp.vue';
 
 Vue.use(VueRouter);
 
@@ -29,6 +33,16 @@ const routes = [
     path: '/update/:id',
     name: 'updateCourse',
     component: NewCourse,
+  },
+  {
+    path: '/sign-up',
+    name: 'signUp',
+    component: SignUp,
+  },
+  {
+    path: '/sign-in',
+    name: 'signIn',
+    component: SignIn,
   },
 ];
 
