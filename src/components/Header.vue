@@ -46,14 +46,22 @@
 </template>
 
 <script>
+import Snack from '@/components/Snack.vue';
+import { mapActions } from 'vuex';
 export default {
+  components: {
+    Snack,
+  },
   methods: {
+    ...mapActions({
+      snack: 'snack/snack',
+    }),
     async signOut() {
       const { error } = await this.$supabase.auth.signOut();
       location.reload();
 
       if (error) {
-        console.log(error);
+        this.snack(error);
       }
     },
   },

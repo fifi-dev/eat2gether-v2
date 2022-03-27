@@ -66,9 +66,9 @@ export default {
         .single();
       if (data) {
         this.course = data;
-        console.log(data);
+        this.snack(error);
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
   },

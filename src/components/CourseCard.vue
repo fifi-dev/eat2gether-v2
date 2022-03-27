@@ -71,7 +71,12 @@
 <script>
 import { supabase } from '../supabase';
 
+import Snack from '@/components/Snack.vue';
+import { mapActions } from 'vuex';
 export default {
+  components: {
+    Snack,
+  },
   props: {
     data: Object,
   },
@@ -84,6 +89,9 @@ export default {
     this.UserInfo();
   },
   methods: {
+    ...mapActions({
+      snack: 'snack/snack',
+    }),
     goTo(name) {
       this.$router.push({
         name: name,
@@ -102,7 +110,7 @@ export default {
       if (data) {
         this.userInfo = data;
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
   },

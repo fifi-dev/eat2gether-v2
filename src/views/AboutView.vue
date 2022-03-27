@@ -44,7 +44,12 @@
 <script>
 import { supabase } from '../supabase';
 
+import Snack from '@/components/Snack.vue';
+import { mapActions } from 'vuex';
 export default {
+  components: {
+    Snack,
+  },
   data() {
     return {
       userInfo: {},
@@ -54,6 +59,9 @@ export default {
     this.UserInfo();
   },
   methods: {
+    ...mapActions({
+      snack: 'snack/snack',
+    }),
     async UserInfo() {
       let user = await supabase.auth.user();
 
@@ -63,10 +71,9 @@ export default {
         .match({ auth_id: user.id })
         .single();
       if (data) {
-        console.log(data);
         this.userInfo = data;
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
     async signOut() {
@@ -74,7 +81,7 @@ export default {
       location.reload();
 
       if (error) {
-        console.log(error);
+        this.snack(error);
       }
     },
   },

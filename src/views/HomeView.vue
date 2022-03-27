@@ -66,10 +66,9 @@ export default {
         .match({ auth_id: user.id })
         .single();
       if (data) {
-        console.log(data);
         this.userInfo = data;
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
   },

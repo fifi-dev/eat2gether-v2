@@ -205,6 +205,8 @@ export default {
         .update(this.course)
         .match({ id: this.$route.params.id });
       if (data) {
+        this.snack('Course updated !');
+
         this.$router.push({ name: 'Courses' });
       } else {
         this.snack(error);
@@ -215,6 +217,7 @@ export default {
         .from('courses')
         .insert(this.course);
       if (data) {
+        this.snack('Course successfully added !');
         this.goTo('home');
       } else {
         this.snack(error);
@@ -229,7 +232,6 @@ export default {
         .single();
       if (data) {
         this.course = data;
-        console.log(data);
       } else {
         this.snack(error);
       }
@@ -243,11 +245,9 @@ export default {
         .match({ auth_id: user.id })
         .single();
       if (data) {
-        console.log(data);
         this.userInfo = data;
-        console.log(data);
       } else {
-        console.log(error);
+        this.snack(error);
       }
     },
   },
