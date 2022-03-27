@@ -29,11 +29,11 @@
       </div>
     </div>
     <div class="flex w-1/2 justify-center items-center bg-white">
-      <form class="bg-white">
+      <form @submit.prevent="login" class="bg-white">
         <h1 class="text-gray-800 font-bold text-2xl mb-1">Login</h1>
         <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back !</p>
         <!-- error message -->
-        <div class="bg-red-600 mx-4 text-white p-5" v-if="errorMsg">
+        <div class="bg-red-600 mb-4 text-white p-5">
           <p>{{ errorMsg }}</p>
         </div>
         <!-- Email -->
@@ -54,7 +54,7 @@
           </svg>
           <input
             class="pl-2 outline-none border-none"
-            type="text"
+            type="email"
             name="email"
             required
             id="email"
@@ -104,15 +104,31 @@
 <script>
 // @ is an alias to /src
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'SignIn',
   setup() {
+    const router = useRouter();
     const email = ref(null);
     const password = ref(null);
     const errorMsg = ref(null);
-
-    return { email, password, confirmPassword, errorMsg };
+    const login = async () => {
+      try {
+        const { error } = await $supabase.auth.signIn({
+          email: email.value,
+          password: password.value,
+        });
+        if (error) throw error;
+        router.push({ name: 'home' });
+      } catch (error) {
+        errorMsg.value = `Error: ${error.message}`;
+        setTimeout(() => {
+          errorMsg.value = null;
+        }, 5000);
+      }
+    };
+    return { email, password, errorMsg, login };
   },
 };
 </script>
