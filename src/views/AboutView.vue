@@ -47,12 +47,7 @@ import { supabase } from '../supabase';
 export default {
   data() {
     return {
-      userInfo: {
-        first_name: '',
-        last_name: '',
-        role: '',
-        img_url: '',
-      },
+      userInfo: {},
     };
   },
   mounted() {

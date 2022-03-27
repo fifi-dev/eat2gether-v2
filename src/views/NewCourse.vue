@@ -4,7 +4,10 @@
       <div
         class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10"
       >
-        <div class="max-w-md mx-auto">
+        <div v-if="userInfo.role == teacher" class="max-w-md mx-auto">
+          <p>Only Teacher can access this page</p>
+        </div>
+        <div v-else class="max-w-md mx-auto">
           <div class="flex items-center space-x-5">
             <div class="font-semibold text-xl text-gray-700">
               <h2 class="">
@@ -176,6 +179,7 @@ export default {
         start_at: '',
         end_at: '',
       },
+      userInfo: {},
     };
   },
   mounted() {
@@ -224,6 +228,22 @@ export default {
         console.log(data);
       } else {
         this.snack(error);
+      }
+    },
+
+    async UserInfo() {
+      let user = await supabase.auth.user();
+
+      const { data, error } = await this.$supabase
+        .from('users')
+        .select()
+        .match({ auth_id: user.id })
+        .single();
+      if (data) {
+        console.log(data);
+        this.userInfo = data;
+      } else {
+        console.log(error);
       }
     },
   },

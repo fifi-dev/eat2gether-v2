@@ -3,6 +3,7 @@
     <div class="h-screen flex flex-wrap items-center justify-center">
       <CourseCard
         :data="course"
+        :user="userInfo"
         :key="'course-' + course.id"
         @on-delete="deleteCourse(course.id)"
         v-for="course in courses"
@@ -26,6 +27,7 @@ export default {
   data() {
     return {
       courses: [],
+      userInfo: {},
     };
   },
   mounted() {
@@ -53,6 +55,21 @@ export default {
         this.courses = data;
       } else {
         this.snack(error);
+      }
+    },
+    async UserInfo() {
+      let user = await supabase.auth.user();
+
+      const { data, error } = await this.$supabase
+        .from('users')
+        .select()
+        .match({ auth_id: user.id })
+        .single();
+      if (data) {
+        console.log(data);
+        this.userInfo = data;
+      } else {
+        console.log(error);
       }
     },
   },

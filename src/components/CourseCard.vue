@@ -20,7 +20,7 @@
       </div>
 
       <!-- Delete Button -->
-      <div class="flex justify-end">
+      <div class="flex justify-end" v-if="user.role == teacher">
         <button
           class="rounded-full hover:bg-red-400 delay-50 duration-100 p-1"
           @click="$emit('on-delete')"
@@ -72,6 +72,7 @@
 export default {
   props: {
     data: Object,
+    user: Object,
   },
   methods: {
     goTo(name) {
