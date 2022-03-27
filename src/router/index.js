@@ -43,7 +43,7 @@ const routes = [
     },
   },
   {
-    path: '/update/:id',
+    path: '/courses/:id/update',
     name: 'updateCourse',
     component: NewCourse,
     meta: {
