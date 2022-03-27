@@ -32,6 +32,10 @@
       <form class="bg-white">
         <h1 class="text-gray-800 font-bold text-2xl mb-1">Login</h1>
         <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back !</p>
+        <!-- error message -->
+        <div class="bg-red-600 mx-4 text-white p-5" v-if="errorMsg">
+          <p>{{ errorMsg }}</p>
+        </div>
         <!-- Email -->
         <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
           <svg
