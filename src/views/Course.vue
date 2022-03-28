@@ -20,7 +20,7 @@
         </div>
         <div class="w-full md:w-1/2 px-5">
           <div class="mb-10">
-            <h1 class="font-bold uppercase text-2xl mb-5">
+            <h1 class="font-bold uppercase text-2xl mb-5 text-pink-400">
               {{ course.name }}<br />With {{ course.teacher }}
             </h1>
             <p class="text-sm">
@@ -31,12 +31,20 @@
             <p>Start date : {{ course.start_at | formatDate }}</p>
             <p>End date : {{ course.end_at | formatDate }}</p>
           </div>
+          <button
+            v-if="userInfo.role == 'teacher'"
+            class="flex justify-right items-center bg-gray-600 text-white px-4 py-3 mt-8 focus:outline-none hover:bg-blue-600 hover:text-white"
+            @click="goTo('updateCourse')"
+          >
+            Edit Course
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { supabase } from '../supabase';
 import Snack from '@/components/Snack.vue';
 import { mapActions } from 'vuex';
 export default {
@@ -45,10 +53,12 @@ export default {
   },
   data() {
     return {
+      userInfo: {},
       course: {},
     };
   },
   mounted() {
+    this.UserInfo();
     this.getCourse();
   },
   methods: {
@@ -67,6 +77,19 @@ export default {
       if (data) {
         this.course = data;
         this.snack(error);
+      } else {
+        this.snack(error);
+      }
+    },
+    async UserInfo() {
+      let user = await supabase.auth.user();
+      const { data, error } = await this.$supabase
+        .from('users')
+        .select()
+        .match({ auth_id: user.id })
+        .single();
+      if (data) {
+        this.userInfo = data;
       } else {
         this.snack(error);
       }

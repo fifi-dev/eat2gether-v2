@@ -3,7 +3,6 @@
     <div class="h-screen pt-20 flex flex-wrap items-center justify-center">
       <CourseCard
         :data="course"
-        :user="userInfo"
         :key="'course-' + course.id"
         @on-delete="deleteCourse(course.id)"
         v-for="course in courses"
