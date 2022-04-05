@@ -43,10 +43,8 @@ Teachers and students can also view and edit their profiles
 - [ ] Clone the repo :
 
   ```sh
-  git clone https://github.com/fifi-dev/Django-initalization.git
+  git clone git@github.com:IIM-Creative-Technology/headless-cms-fifi-dev.git
   ```
-
-- [ ] vs studio
 
 - [ ] Install the dependancies
 
