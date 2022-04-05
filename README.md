@@ -4,14 +4,15 @@
 
 #### 📝 Description :
 
-chappy is a Django multiapp who allow user to shop christmas themed product and chat with connected users.
+Portal is a student portal allowing students to consult the list of courses and teachers to consult, modify or add courses.
+
+Teachers and students can also view and edit their profiles
 
 #### 💡 Features :
 
-- Shop (listing & incrementing)
 - Authentifiation
-- Online Chat
-- Connected & disconnected status
+- CRUD of Courses
+- Snack bars
 
 for the database: 
 
@@ -20,9 +21,8 @@ for the database:
 
 #### 👩🏾‍💻 Built With :
 
-https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D
-[Django]()
-![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
 ## 📺 Getting Started
 
