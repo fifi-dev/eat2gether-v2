@@ -14,11 +14,6 @@ Teachers and students can also view and edit their profiles
 - CRUD of Courses
 - Snack bars
 
-for the database: 
-
-![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
-
-
 #### 👩🏾‍💻 Built With :
 
 ![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
@@ -48,8 +43,8 @@ for the database:
 - [ ] Clone the repo :
 
   ```sh
-     git clone https://github.com/fifi-dev/Django-initalization.git
-     ```
+  git clone https://github.com/fifi-dev/Django-initalization.git
+  ```
 
 - [ ] vs studio
 
@@ -62,25 +57,48 @@ for the database:
 - [ ] run the project
 
   ```sh
- npm run serve
-     ```
------------------
-## Project setup
-```
-npm install
-```
+   npm run serve
+  ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
+#### Compiles and minifies for production
 ```
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### 🗝 Supabase
+
+- supabaseUrl
+
+```sh
+   https://sdpzyoqjxbdafrnkqkat.supabase.co
+   ```
+
+- supabaseAnonKey
+
+```sh
+   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNkcHp5b3FqeGJkYWZybmtxa2F0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDgwMjk2OTAsImV4cCI6MTk2MzYwNTY5MH0.jfrpxO12Cg0jnNqyvOKlci_jqz7pHE7Pik0m2OSPBmU
+   ```
+
+#### 🤝 Contributing :
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+- Fork the Project
+- Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+- Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+- Push to the Branch (`git push origin feature/AmazingFeature`)
+- Open a Pull Request
+
+
+
+## 🏆 Credits :
+
+
+- BAZANA NTOMO Fideline `https://github.com/fifi-dev`
+
+
+## 📜 Licence
+ <a align="center"  rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
 
 
