@@ -49,7 +49,9 @@ export default {
       }
     },
     async getAllCourses() {
-      const { data, error } = await this.$supabase.from('courses').select();
+      const { data, error } = await this.$supabase
+      .from('courses')
+      .select();
       if (data) {
         this.courses = data;
       } else {

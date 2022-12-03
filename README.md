@@ -1,4 +1,4 @@
-<p align='center'> <a href="https://github.com/IIM-Creative-Technology/headless-cms-fifi-dev/edit/master/README.md"><img src="https://i.ibb.co/P6pzknf/portal.png" alt="portal" border="0"></a></p>
+<p align='center'> <a href="https://imgbb.com/"><img src="https://i.ibb.co/bBCWVTf/logo-eat2gether.png" alt="logo-eat2gether" border="0"></a></p>
 
 ## 💼 The project
 
