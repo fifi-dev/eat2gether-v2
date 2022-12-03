@@ -24,6 +24,7 @@ const routes = [
     component: HomeView,
     meta: {
       requireAuth: true,
+      hideNavbar: false,
     },
   },{
     path: '/',
@@ -31,6 +32,7 @@ const routes = [
     component: AllRooms,
     meta: {
       requireAuth: true,
+      hideNavbar: true,
     },
   },
   {
