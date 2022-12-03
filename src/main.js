@@ -17,6 +17,31 @@ Vue.filter('formatDate', function (value) {
   }
 });
 
+//only hour
+
+Vue.filter('onlyHour', function (value) {
+  if (value) {
+    return moment(String(value)).format("HH:mm");
+  }
+});
+
+//test
+const shared = {
+  message: "my global message"
+}
+
+//console.log (shared);
+
+shared.install = function(){
+  Object.defineProperty(Vue.prototype, '$myGlobalStuff', {
+    get () { return shared }
+  })
+}
+
+Vue.use(shared);
+
+Vue.config.productionTip = false
+
 new Vue({
   router,
   store,
