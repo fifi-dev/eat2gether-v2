@@ -1,6 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+//Room View
+import RoomView from '../views/RoomView.vue'
+import AllRooms from '../views/AllRooms.vue'
+
 import NewCourse from '../views/NewCourse.vue';
 // login
 import SignIn from '../views/SignIn.vue';
@@ -15,9 +19,16 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/courses',
     name: 'home',
     component: HomeView,
+    meta: {
+      requireAuth: true,
+    },
+  },{
+    path: '/',
+    name: 'rooms',
+    component: AllRooms,
     meta: {
       requireAuth: true,
     },
@@ -33,6 +44,18 @@ const routes = [
     meta: {
       requireAuth: true,
     },
+  },
+  {
+    path: '/rooms/:name',
+    name: 'room',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: RoomView,
+    meta: {
+      hideNavbar: true,
+      requireAuth: true,
+    }
   },
   {
     path: '/new-course',
