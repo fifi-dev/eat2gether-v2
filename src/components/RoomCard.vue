@@ -1,5 +1,5 @@
 <template>
-    <div class="room-card m-3 mt-10 text-start bg-gray-900 text-white w-65 p-2 shadow-md max-w-sm relative">
+    <div class="room-card m-3 mt-10 text-start bg-white text-gray-900 w-65 p-2 shadow-md max-w-sm relative">
     <div class="h-40 relarive roomImg flex justify-center">
         <img class="h-40 absolute m-auto" alt="Vue logo" v-bind:src="data.imgUrl"> 
     </div>

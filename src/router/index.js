@@ -32,7 +32,7 @@ const routes = [
     component: AllRooms,
     meta: {
       requireAuth: true,
-      hideNavbar: true,
+      hideNavbar: false,
     },
   },
   {
@@ -89,6 +89,7 @@ const routes = [
     component: SignUp,
     meta: {
       requireAuth: false,
+      hideNavbar: true,
     },
   },
   {
@@ -97,6 +98,7 @@ const routes = [
     component: SignIn,
     meta: {
       requireAuth: false,
+      hideNavbar: true,
     },
   },
 ];

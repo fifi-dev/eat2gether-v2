@@ -1,7 +1,7 @@
 <template>
-    <div class="room flex wrap">
+    <div class="room flex wrap bg-white">
         <!-- <RoomInfo/> -->
-        <div class="room-info  py-3 mt-6 ml-6 text-start">
+        <div class="room-info py-3 mt-6 ml-6 text-start">
             <!-- header -->
             <div>
                 <img class="w-36 mb-6" alt="Vue logo" src="../assets/logo.png">
@@ -76,7 +76,12 @@ export default {
 </script>
 
 <style>
+
+.room{
+    height: 100vh;
+}
     .room-info{
     width: 30%;
+    height: 100%;
     }
 </style>
