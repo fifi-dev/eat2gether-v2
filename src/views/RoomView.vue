@@ -93,6 +93,13 @@ export default {
                 this.snack(error);
             }
         },
+        async assignRoom() {
+            if(this.UserInfo.room_id !== null){
+                this.snack("on peut assigner");
+            }else{
+                this.snack(error);
+            }
+        }
     }
 }
 </script>
