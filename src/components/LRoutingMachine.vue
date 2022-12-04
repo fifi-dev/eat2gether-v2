@@ -16,7 +16,7 @@ const props = {
     },
     waypoints: {
     type: Array,
-    required: false
+    required: true
     },
     router: {
     type: IRouter

@@ -64,7 +64,7 @@ https://github.com/fifi-dev/node-js_socket_io
 - [ ] Clone the repo :
 
   ```sh
-  git clone git@github.com:fifi-dev/Eat2gether.git
+  git clone git@github.com:fifi-dev/eat2gether-v2.git
   ```
 
 - [ ] Install the dependancies
@@ -72,6 +72,8 @@ https://github.com/fifi-dev/node-js_socket_io
    ```sh
    npm install
    ```
+
+- [ ] Add your supabase credentials in supabase.js
 
 - [ ] run the project
 
@@ -90,12 +92,12 @@ npm run build
 - supabaseUrl
 
 ```sh
-   https://vqfpmfddevcadiwkimqy.supabase.co
+   https://sdpzyoqjxbdafrnkqkat.supabase.co
    ```
 
 - supabaseAnonKey
 
-```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxZnBtZmRkZXZjYWRpd2tpbXF5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2OTgwMDM2MSwiZXhwIjoxOTg1Mzc2MzYxfQ.KpxQvhHpaSwbW1aNJ3_soYlNNxwRNE7HuW-EUdTUGUs
+```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNkcHp5b3FqeGJkYWZybmtxa2F0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDgwMjk2OTAsImV4cCI6MTk2MzYwNTY5MH0.jfrpxO12Cg0jnNqyvOKlci_jqz7pHE7Pik0m2OSPBmU
    ```
 
 #### 🤝 Contributing :
