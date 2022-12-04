@@ -47,6 +47,8 @@
                     <p class="ml-3">Point de RDV</p>
                 </div>
             </div>
+            <!-- Chat -->
+            <ChatComponent/>
         </div>
         <MapComponent/>
     </div>
@@ -54,6 +56,7 @@
 
 <script>
 import MapComponent from '@/components/MapComponent.vue'
+import ChatComponent from '@/components/ChatComponent.vue'
 //import RoomInfo from '@/components/RoomInfo.vue'
 import Snack from '@/components/Snack.vue';
 import { mapActions } from 'vuex';
@@ -62,6 +65,7 @@ export default {
     components: {
         Snack,
         MapComponent,
+        ChatComponent,
         //RoomInfo,
     },
     data() {
