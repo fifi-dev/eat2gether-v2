@@ -21,11 +21,12 @@
                 :ignoreHidden="true"
                 :options="clusterOptions"
                 > -->
-                    <MarkerComponent
-                    v-for="marker in markers"
-                    :key="marker.id"
-                    :marker="marker"
-                    />
+                <MarkerComponent
+                v-for="marker in markers"
+                :key="marker.id"
+                :marker="marker"
+                />
+                <LRoutingMachine :waypoints="waypoints"/>
                 <!-- </v-marker-cluster>-->
                 <!-- <template v-if="location">
                     <l-circle-marker :lat-lng="location.latlng" :fillOpacity="1" :radius="10" />
@@ -41,11 +42,12 @@
 //import { Icon } from 'leaflet';
 import { LMap, LTileLayer,  } from 'vue2-leaflet';
 import MarkerComponent from './MarkerComponent.vue';
+import LRoutingMachine from './LRoutingMachine.vue';
 
 import { supabase } from '../supabase';
-
 import Snack from '@/components/Snack.vue';
 import { mapActions } from 'vuex';
+
 
 //va permettre de reduire le nombre de marquers si il y a beaucoup
 //import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster';
@@ -59,6 +61,10 @@ Icon.Default.mergeOptions({
     iconUrl: require('leaflet/dist/images/marker-icon.png'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 })*/
+const waypoints = [
+  { lat: 48.89374094854599, lng: 2.22700032262402 },
+  { lat: 48.890908715563945, lng: 2.2380101772298473 },
+];
 
 export default {
     name: 'MapComponent',
@@ -67,6 +73,7 @@ export default {
     LTileLayer,
     MarkerComponent,
     Snack,
+    LRoutingMachine,
     //LCircleMarker,
     //'v-marker-cluster': Vue2LeafletMarkerCluster
     },
@@ -94,6 +101,7 @@ export default {
             ],
             location: null,
             userInfo: {},
+            waypoints,
             /*clusterOptions: {
                 spiderfyDistanceMultiplier: 3,
                 iconCreateFunction: cluster => {

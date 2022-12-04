@@ -4,7 +4,9 @@ import router from './router';
 import store from './store';
 import moment from 'moment';
 import 'leaflet/dist/leaflet.css';
-import './assets/css/style.css'
+import './assets/css/style.css';
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+
 
 
 // bdd supabase
