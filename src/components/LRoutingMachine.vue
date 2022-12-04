@@ -116,7 +116,7 @@ export default {
             useZoomParameter,
             showAlternatives,
             language: 'fr',
-            profile: 'bike',
+            profile: 'bicycle',
         }
 
         const { mapObject } = this.parentContainer

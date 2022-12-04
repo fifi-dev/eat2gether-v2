@@ -84,26 +84,26 @@ export default {
             center: [ 48.894475798091705, 2.2265510931325125 ],
             zoom: 16,
             markers: [
-                //pb
+               /* //pb
                 {id: 1, name: 'PB Poulet Braisé', iconUrl: require('../assets/img/restaurant_marker.png'), coordinates: [ 48.8951916533519, 2.2230104684596537 ], review : this.$myGlobalStuff.message },
                 //mcdo
                 {id: 2, name: 'McDo', iconUrl: require('../assets/img/restaurant_marker.png') ,coordinates: [ 48.89149774910227, 2.2371447587511417 ], review : 'Mcdo'},
-                //kfc
-                {id: 3, name: 'KFC', iconUrl: require('../assets/img/restaurant_marker.png'), coordinates: [ 48.890908715563945, 2.2380101772298473], review : 'Bucket à 7 les mardis'},
                 //franprix
                 {id: 4, name: 'Franprix', iconUrl: require('../assets/img/restaurant_marker.png'), coordinates: [ 48.89632970183085, 2.2226684782269883 ], review : 'Barquette de poulet et patates entre 2 et 5'},
                 //yummy jap
                 {id: 5, name: 'Yummy', iconUrl: require('../assets/img/restaurant_marker.png'), coordinates: [ 48.89538093649458, 2.2241467120671445 ], review : 'Restaurant japonais'},
                 //Yankee Burger
-                {id: 6, name: 'Yankee Burger', iconUrl: require('../assets/img/restaurant_marker.png'), coordinates: [ 48.89442819193548, 2.222982395467637 ], review : 'Des burgers'},
+                {id: 6, name: 'Yankee Burger', iconUrl: require('../assets/img/restaurant_marker.png'), coordinates: [ 48.89442819193548, 2.222982395467637 ], review : 'Des burgers'},*/
                 //IIM
                 {id: 7, name: 'IIM', iconUrl: require('../assets/img/meet_marker.png'), coordinates: [ 48.89374094854599, 2.227000322624023 ], review : 'Institut de l Internet et du Multimédia'},
             ],
             localization: '',
             sLocalization : null,
             userInfo: {},
+            restaurant: {},
             userLat: '',
             userLon: '',
+            userRestoId: null,
             waypoints,
             /*clusterOptions: {
                 spiderfyDistanceMultiplier: 3,
@@ -144,10 +144,11 @@ export default {
     },
     onReady() {
             this.map = this.$refs["map"].mapObject;
-            this.map.locate();
-            //Si on souhaite recupérer la position tous les 3 secondes 
+            this.map.locate()
+            //Si on souhaite recupérer la position tous les 3 secondes
             //setInterval(this.map.locate(), 3000);
         },
+        
     onLocationFound(l) {
         //console.log(l);
         
@@ -159,13 +160,13 @@ export default {
         console.log("localisation : " + this.localization);
         console.log("localisation spéciale: " + this.sLocalization);
         //On ajoute un marqueur
-        this.markers.push({
+        /*this.markers.push({
         id: 9, 
         name: 'Ma position actuelle', 
         iconUrl: require('../assets/img/green_uMarker.png'), 
         coordinates: [ l.latitude, l.longitude ], 
         review : 'test affichage'
-        });
+        });*/
         this.updatePos();
     },
     async UserInfo() {
@@ -178,6 +179,16 @@ export default {
         if (data) {
             this.userInfo = data;
             console.log("nom: " + this.userInfo.first_name);
+            //On ajoute un marqueur
+            this.markers.push({
+            id: 9, 
+            name: this.userInfo.first_name, 
+            iconUrl: this.userInfo.iconUrl, 
+            coordinates: [ this.userInfo.sLocalization[0], this.userInfo.sLocalization[1] ], 
+            review : this.userInfo.first_name, 
+            });
+            this.userRestoId = this.userInfo.restaurant_id;
+            this.useResto();
         } else {
             this.snack(error);
         }
@@ -196,7 +207,29 @@ export default {
         } else {
             this.snack(error);
         }
+    },
+    async useResto() {
+        const { data, error } = await this.$supabase
+        .from('restaurants')
+        .select()
+        .match({ id: this.userRestoId })
+        .single();
+        if(data){
+            this.restaurant = data;
+            //On ajoute un marqueur
+            this.markers.push({
+            id: Math.random(), 
+            name: this.restaurant.name, 
+            iconUrl: this.restaurant.iconUrl, 
+            coordinates: [ this.restaurant.s_coordiantes[0], this.restaurant.s_coordiantes[1] ], 
+            review : this.restaurant.review, 
+            });
+            console.log("bravo");
+        }else{
+            console.log(error)
+        }
     }
+
     }
 }
 </script>
