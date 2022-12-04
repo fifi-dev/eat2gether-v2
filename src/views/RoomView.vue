@@ -19,13 +19,16 @@
             <!-- Membres  -->
             <div class="py-3">
                 <h2 class="mb-3">Membres</h2>
-                <div 
-                v-for="member in members" 
-                :key="'member-' + member.id" 
-                class="flex items-cente mt-5">
-                    <img class=" w-6 mr-3" :src="member.iconUrl" alt="avatar">
-                    <p>{{ member.first_name }}</p>
+                <div class="flex">
+                    <div 
+                    v-for="member in members" 
+                    :key="'member-' + member.id" 
+                    class="flex mr-6 items-cente mt-5">
+                        <img class=" w-6 mr-3" :src="member.iconUrl" alt="avatar">
+                        <p>{{ member.first_name }}</p>
+                    </div>
                 </div>
+                
                 
             </div>
             <!-- Legende  -->
