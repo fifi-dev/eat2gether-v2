@@ -4,20 +4,42 @@
 
 #### 📝 Description :
 
-Portal is a student portal allowing students to consult the list of courses and teachers to consult, modify or add courses.
+Eat2gether is a app that's allow you and your friend to plan meals. 
 
-Teachers and students can also view and edit their profiles
+🤔 How it's work ? : 
+
+During the registration you need to choose a restaurant to go grab your meal. Then you join a room with your friend. You will have access to each member itinaray and real time position.
+
+You also can chat with your friend 🥳
 
 #### 💡 Features :
 
 - Authentifiation
-- CRUD of Courses
-- Snack bars
+- Rooms
+- Real time localisation
+- Itenary
+- Restaurants list & details
+- Real time chat system
 
 #### 👩🏾‍💻 Built With :
 
+
+This project was carried out with the use of the following languages :
+
 ![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
+![Tailwind Css](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Socket.io](https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white)
+![Node.JS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=whi)
+
+for the database: 
+
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+
+link to server folder :
+[Par ici](https://github.com/fifi-dev/node-js_socket_io)
+
+https://github.com/fifi-dev/node-js_socket_io
+
 
 ## 📺 Getting Started
 
@@ -29,7 +51,6 @@ Teachers and students can also view and edit their profiles
 
 ```sh
   npm install moment   
-  
   ```
 
 - [ ] supabase.js
@@ -43,7 +64,7 @@ Teachers and students can also view and edit their profiles
 - [ ] Clone the repo :
 
   ```sh
-  git clone git@github.com:IIM-Creative-Technology/headless-cms-fifi-dev.git
+  git clone git@github.com:fifi-dev/Eat2gether.git
   ```
 
 - [ ] Install the dependancies
@@ -69,13 +90,12 @@ npm run build
 - supabaseUrl
 
 ```sh
-   https://sdpzyoqjxbdafrnkqkat.supabase.co
+   https://vqfpmfddevcadiwkimqy.supabase.co
    ```
 
 - supabaseAnonKey
 
-```sh
-   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNkcHp5b3FqeGJkYWZybmtxa2F0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDgwMjk2OTAsImV4cCI6MTk2MzYwNTY5MH0.jfrpxO12Cg0jnNqyvOKlci_jqz7pHE7Pik0m2OSPBmU
+```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxZnBtZmRkZXZjYWRpd2tpbXF5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2OTgwMDM2MSwiZXhwIjoxOTg1Mzc2MzYxfQ.KpxQvhHpaSwbW1aNJ3_soYlNNxwRNE7HuW-EUdTUGUs
    ```
 
 #### 🤝 Contributing :

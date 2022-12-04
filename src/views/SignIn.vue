@@ -7,13 +7,11 @@
         <a
           class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center lg:items-center lg:justify-center ml-4 mb-4 md:mb-0"
         >
-          <img
-            src="https://pazly.dev/logo.png"
-            style="height: 40px; margin-top: 10px; margin-bottom: 10px"
-            alt="logo"
-          />
-
-          <span class="ml-3 text-white text-xl">Portal</span>
+        <img
+          class="w-40 mb-6"
+          src="../assets/img/logo_white.png"
+          alt="logo"
+        />
         </a>
 
         <p class="text-white text-left mt-1">
