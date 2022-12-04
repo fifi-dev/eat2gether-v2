@@ -22,7 +22,7 @@ import RoomCard from '@/components/RoomCard.vue'
 //import { mapActions } from 'vuex';
 
 export default {
-    name: 'AllRoomq',
+    name: 'AllRooms',
     components: {
     // HelloWorld,
     RoomCard,

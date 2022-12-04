@@ -75,8 +75,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+body{
+height: 100vh !important;
+overflow: hidden !important;
+}
 .room{
     height: 90vh;
     margin-top: 10%;

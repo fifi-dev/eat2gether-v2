@@ -63,7 +63,7 @@ Icon.Default.mergeOptions({
 })*/
 const waypoints = [
   { lat: 48.89374094854599, lng: 2.22700032262402 },
-  { lat: 48.890908715563945, lng: 2.2380101772298473 },
+  { lat: 48.8951916533519, lng: 2.2230104684596537 },
 ];
 
 export default {
@@ -188,8 +188,10 @@ width: 60% !important;
 .map {
 position: absolute;
 width: 70% !important;
+margin-top: 0%;
 height: 90% !important;
 overflow :hidden;
+z-index: 5;
 }
 
 .cluster {

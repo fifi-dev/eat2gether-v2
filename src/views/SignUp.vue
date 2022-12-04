@@ -32,10 +32,118 @@
     <div class="flex w-1/2 justify-center items-center bg-white">
       <div class="bg-white">
         <h1 class="text-gray-800 font-bold text-2xl mb-1">Register</h1>
-        <p class="text-sm font-normal text-gray-600 mb-7">Good to see you !</p>
+        <p class="text-sm font-normal text-gray-600 mb-7">Ravi de vous revoir !</p>
         <!-- error message -->
         <div class="bg-red-600 mx-4 text-white p-5" v-if="errorMsg">
           <p>{{ errorMsg }}</p>
+        </div>
+        <!-- avatar -->
+        <label for="" class="block mb-1 text-gray-600 text-start font-semibold">Avatar <span>(selectionnez)</span></label>
+        <div class="overflow-x-auto">
+            <div class="grid w-[20rem] grid-cols-6 space-x-2 rounded-xl  p-2" x-data="app">
+                <!--Img 1-->
+                <div>
+                    <input 
+                    type="radio" 
+                    name="option" 
+                    value="../assets/img/blue_uMarker.png" 
+                    id="1" 
+                    v-model="iconUrl"
+                    class="peer hidden" 
+                    checked />
+                    <label
+                        for="1"
+                        class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white"
+                        >
+                        <img src="../assets/img/blue_uMarker.png" class="m-auto w-12" alt="User Avatar"/>
+                        </label
+                    >
+                </div>
+                <!--Img 2-->
+                <div>
+                    <input 
+                    type="radio" 
+                    name="option" 
+                    value="../assets/img/gray_uMarker.png" 
+                    id="2" 
+                    v-model="iconUrl"
+                    class="peer hidden" />
+                    <label
+                        for="2"
+                        class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white"
+                        >
+                        <img src="../assets/img/gray_uMarker.png" class="m-auto w-12" alt="User Avatar"/>
+                        </label
+                    >
+                </div>
+                <!--Img 3-->
+                <div>
+                    <input 
+                    type="radio" 
+                    name="option" 
+                    value="../assets/img/green_uMarker.png" 
+                    id="3" 
+                    v-model="iconUrl"
+                    class="peer hidden" />
+                    <label
+                        for="3"
+                        class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white"
+                        >
+                        <img src="../assets/img/green_uMarker.png" class="m-auto w-12" alt="User Avatar"/>
+                        </label
+                    >
+                </div>
+                <!--Img 4-->
+                <div>
+                    <input 
+                    type="radio" 
+                    name="option" 
+                    value="../assets/img/pink_uMarker.png" 
+                    id="4" 
+                    v-model="iconUrl"
+                    class="peer hidden" />
+                    <label
+                        for="4"
+                        class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white"
+                        >
+                        <img src="../assets/img/pink_uMarker.png" class="m-auto w-12" alt="User Avatar"/>
+                        </label
+                    >
+                </div>
+                <!--Img 5 -->
+                <div>
+                    <input 
+                    type="radio" 
+                    name="option" 
+                    value="../assets/img/purple_uMarker.png" 
+                    v-model="iconUrl"
+                    id="5" class="peer hidden" />
+                    <label
+                        for="5"
+                        class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white"
+                        >
+                    <img src="../assets/img/purple_uMarker.png" class="m-auto w-12" alt="User Avatar"/>
+                        </label
+                    >
+                </div>
+                <!--Img 6-->
+                <div>
+                    <input 
+                    type="radio" 
+                    name="option" 
+                    value="../assets/img/yellow_uMarker.png" 
+                    id="6" 
+                    v-model="iconUrl"
+                    class="peer hidden" />
+                    <label
+                        for="6"
+                        class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white"
+                        >
+                    <img src="../assets/img/yellow_uMarker.png" class="m-auto w-12" alt="User Avatar"/>
+                        </label
+                    >
+                </div>
+            </div>
         </div>
         <!-- First Name -->
         <div class="flex items-center border-2 py-2 px-3 mb-4">
@@ -108,6 +216,19 @@
             <option value="teacher">Teacher</option>
           </select>
         </div>
+        <!--  select password -->
+        <div class="py-2 mt-4">
+          <label for="restaurants"> Restaurant </label>
+          <select 
+          v-model="restaurant_id"
+          id="restaurants" 
+          class="bg-indigo-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option 
+              :key="'restaurant-' + restaurant.id"
+              v-for="restaurant in restaurants"  
+              v-bind:value="restaurant.id">{{ restaurant.name }}</option>
+          </select>
+        </div>
         <!-- btn submit -->
         <button
           @click="signUp()"
@@ -138,12 +259,26 @@ export default {
       first_name: '',
       last_name: '',
       role: '',
+      restaurant_id: '',
+      iconUrl: '',
       email: '',
       password: '',
       errorMsg: '',
+      restaurants: [],
     };
   },
+  mounted() {
+      this.getAllRestaurants();
+  },
   methods: {
+    async getAllRestaurants() {
+        const { data, error } = await this.$supabase.from('restaurants').select();
+        if (data) {
+        this.restaurants = data;
+        } else {
+        console.log(error);
+        }
+    },
     ...mapActions({
       snack: 'snack/snack',
     }),
@@ -160,6 +295,9 @@ export default {
         last_name: this.last_name,
         role: this.role,
         auth_id: user.id,
+        restaurant_id: this.restaurant_id,
+        iconUrl : this.iconUrl,
+
       });
       if (user) {
         this.snack('connected successfully with : ' + user.email);

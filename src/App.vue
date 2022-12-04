@@ -10,9 +10,10 @@
     </button>-->
     <Snack />
     <router-view />
-    <div class="absolute z-10 text-sm bottom-4 right-4">
+    <!-- copyright -->
+    <!-- <div class="absolute z-10 text-sm bottom-4 right-4">
       <p class="text-indigo-50 bg-gradient-to-br from-blue-600 to-indigo-600 p-2">Tous droits réservés © 2022 - Fideline BAZANA NTOMO </p>
-    </div>
+    </div> -->
   </div>
 </template>
 

@@ -110,13 +110,13 @@ export default {
         const options = {
             waypoints,
             fitSelectedRoutes,
-            autoRoute,
             routeWhileDragging,
             routeDragInterval,
             waypointMode,
             useZoomParameter,
             showAlternatives,
             language: 'fr',
+            profile: 'bike',
         }
 
         const { mapObject } = this.parentContainer
