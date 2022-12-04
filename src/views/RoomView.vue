@@ -130,7 +130,7 @@ overflow: hidden !important;
 }
 .room{
     height: 90vh;
-    margin-top: 10%;
+    margin-top: 5%;
     overflow: hidden !important;
 }
     .room-info{
