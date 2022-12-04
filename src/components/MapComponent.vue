@@ -91,17 +91,20 @@ export default {
                 //Yankee Burger
                 {id: 6, name: 'Yankee Burger', iconUrl: require('../assets/img/restaurant_marker.png'), coordinates: [ 48.89442819193548, 2.222982395467637 ], review : 'Des burgers'},*/
                 //IIM
-                {id: 7, name: 'IIM', iconUrl: require('../assets/img/meet_marker.png'), coordinates: [ 48.89374094854599, 2.227000322624023 ], review : 'Institut de l Internet et du Multimédia'},
+                //{id: 7, name: 'IIM', iconUrl: require('../assets/img/meet_marker.png'), coordinates: [ 48.89374094854599, 2.227000322624023 ], review : 'Institut de l Internet et du Multimédia'},
             ],
             localization: '',
             sLocalization : null,
             userInfo: {},
             restaurant: {},
+            room: {},
             userLat: '',
             userLon: '',
+            room_id: '',
             userRestoId: null,
             waypoints : [
             { lat: null, lng: null},
+            { lat: null, lng: null },
             { lat: null, lng: null },
             ],
             /*clusterOptions: {
@@ -187,7 +190,9 @@ export default {
             review : this.userInfo.first_name, 
             });
             this.userRestoId = this.userInfo.restaurant_id;
+            this.room_id = this.userInfo.room_id;
             this.useResto();
+            this.useRoom();
         } else {
             this.snack(error);
         }
@@ -231,6 +236,29 @@ export default {
         }else{
             console.log(error)
         }
+    },
+    async useRoom() {
+        const { data, error } = await this.$supabase
+        .from('rooms')
+        .select()
+        .match({ id: this.room_id })
+        .single();
+        if(data){
+            this.room = data;
+            //On ajoute un marqueur
+            this.markers.push({
+            id: new Date().getTime(), 
+            name: this.room.localization_name, 
+            iconUrl: this.room.iconUrl, 
+            coordinates: [ this.room.rdv_localization[0], this.room.rdv_localization[1] ], 
+            review : this.room.description, 
+            });
+            console.log("bravo !!");
+            this.waypoints[2].lat = this.room.rdv_localization[0];
+            this.waypoints[2].lng = this.room.rdv_localization[1];
+        }else{
+            console.log(error)
+        }
     }
 
     }
@@ -242,6 +270,7 @@ export default {
 
 .map-component{
 width: 60% !important;
+overflow: hidden !important;
 
 }
 .map {

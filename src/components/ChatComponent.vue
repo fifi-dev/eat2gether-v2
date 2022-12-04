@@ -18,6 +18,8 @@
     import { supabase } from '../supabase';
     import Snack from '@/components/Snack.vue';
     import { mapActions } from 'vuex';
+    import io from "socket.io-client";
+
     export default{
         components: {
         Snack,
@@ -32,6 +34,7 @@
         },
         mounted() {
             this.UserInfo();
+            this.socketI();
             
         },
         methods: {
@@ -52,12 +55,19 @@
                 }
             },
             }),
-            sendMessage() {
-                this.snack("message :" + this.text);
-                console.log("nouveau message de " + this.userName);
-                this.addMessage();
+            socketI() {
+                this.socketInstance = io("http://localhost:3000");
+                this.socketInstance.on(
+                    "message:received", (data) => {
+                    this.messages = this.messages.concat(data);
+                    }
+                )
             },
-
+            sendMessage() {
+                this.addMessage();
+                this.text = "";
+                this.snack("nouveau message ");
+            },
             addMessage() {
                 const message = {
                     id: new Date().getTime(),
@@ -65,7 +75,7 @@
                     userName: this.userName,
                 };
             this.messages = this.messages.concat(message);
-
+            this.socketInstance.emit('message', message);
             },
         },
     }

@@ -7,7 +7,7 @@
         <div class="room-info py-3 mt-6 ml-6 text-start">
             <!-- header -->
             <div class="mt-8">
-               <!--<img class="w-36 mb-6" alt="Vue logo" src="../assets/logo.png">--> 
+                <!--<img class="w-36 mb-6" alt="Vue logo" src="../assets/logo.png">--> 
                 <h1>{{ room.name }}</h1>
             </div>
             <!-- Informations -->

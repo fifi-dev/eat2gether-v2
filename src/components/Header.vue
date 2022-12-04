@@ -13,6 +13,11 @@
         >
         <router-link
           class="mr-5 text-gray-100 hover:text-green-300 cursor-pointer"
+          to="/courses"
+          >courses</router-link
+        >
+        <router-link
+          class="mr-5 text-gray-100 hover:text-green-300 cursor-pointer"
           to="/new-course"
           >Add Course</router-link
         >
