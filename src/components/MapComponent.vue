@@ -27,7 +27,7 @@
                     :marker="marker"
                     />
                 <!-- </v-marker-cluster>-->
-               <!-- <template v-if="location">
+                <!-- <template v-if="location">
                     <l-circle-marker :lat-lng="location.latlng" :fillOpacity="1" :radius="10" />
                     <l-circle-marker :lat-lng="location.latlng" :radius="location.accuracy/2" :stroke="false" />
                 </template> -->
