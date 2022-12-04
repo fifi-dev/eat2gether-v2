@@ -75,7 +75,7 @@ export default {
             .single();
         if (data) {
             this.room = data;
-            this.snack("Il y a : " + data.lenght);
+            //this.snack("Il y a : " + data.lenght);
         } else {
             this.snack(error);
         }
