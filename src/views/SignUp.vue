@@ -301,7 +301,6 @@ export default {
       });
       if (user) {
         this.snack('connected successfully with : ' + user.email);
-
         this.goTo('home');
       } else {
         this.snack(error);

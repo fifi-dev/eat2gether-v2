@@ -99,8 +99,11 @@ export default {
                 //IIM
                 {id: 7, name: 'IIM', iconUrl: require('../assets/img/meet_marker.png'), coordinates: [ 48.89374094854599, 2.227000322624023 ], review : 'Institut de l Internet et du Multimédia'},
             ],
-            location: null,
+            localization: '',
+            sLocalization : null,
             userInfo: {},
+            userLat: '',
+            userLon: '',
             waypoints,
             /*clusterOptions: {
                 spiderfyDistanceMultiplier: 3,
@@ -147,10 +150,14 @@ export default {
         },
     onLocationFound(l) {
         //console.log(l);
-        this.location = l;
-        console.log(" Ta latitude : " + l.latitude);
-        console.log("Ta longitude : " + l.longitude);
-        console.log("localisation : " + this.location.longitude);
+        
+        this.userLat = l.latitude;
+        this.userLon = l.longitude;
+        this.localization =  "[ " + this.userLat + "," + this.userLon + " ]";
+        this.sLocalization = [ this.userLat, this.userLon ];
+        console.log(" Ta latitude : " + this.localization[0])
+        console.log("localisation : " + this.localization);
+        console.log("localisation spéciale: " + this.sLocalization);
         //On ajoute un marqueur
         this.markers.push({
         id: 9, 
@@ -158,7 +165,8 @@ export default {
         iconUrl: require('../assets/img/green_uMarker.png'), 
         coordinates: [ l.latitude, l.longitude ], 
         review : 'test affichage'
-        })
+        });
+        this.updatePos();
     },
     async UserInfo() {
         let user = await supabase.auth.user();
@@ -174,6 +182,21 @@ export default {
             this.snack(error);
         }
     },
+    async updatePos() {
+        let user = await supabase.auth.user();
+        const { data } = await this.$supabase
+        .from('users')
+        .update({
+            localization : this.localization,
+            sLocalization : this.sLocalization,
+        })
+        .match({ auth_id: user.id });
+        if (data) {
+            this.snack('User Pos updated !');
+        } else {
+            this.snack(error);
+        }
+    }
     }
 }
 </script>
