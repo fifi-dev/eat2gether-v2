@@ -1,4 +1,7 @@
 <template>
+   <!-- <div v-if="userInfo.room_id == null" class="text center flex items-center">
+        <p>Seulement les membres peuvent voir le contenu</p>
+    </div> -->
     <div class="room flex wrap bg-white">
         <!-- <RoomInfo/> -->
         <div class="room-info py-3 mt-6 ml-6 text-start">
@@ -56,6 +59,7 @@ export default {
     data() {
         return {
         room: {},
+        room_id: '',
         userInfo: {},
         };
     },
@@ -75,7 +79,11 @@ export default {
             .single();
         if (data) {
             this.room = data;
+            this.room_id = data.id;
+            console.log("l'id de la room :" + this.room_id)
             //this.snack("Il y a : " + data.lenght);
+            this.assignRoom() 
+            
         } else {
             this.snack(error);
         }
@@ -94,12 +102,23 @@ export default {
             }
         },
         async assignRoom() {
-            if(this.UserInfo.room_id !== null){
-                this.snack("on peut assigner");
-            }else{
+        let user = await supabase.auth.user();
+        if ( user.room_id == null ){
+            const { data } = await this.$supabase
+            .from('users')
+            .update({
+                room_id: this.room_id,
+            })
+            .match({ auth_id: user.id });
+            if (data) {
+                this.snack('Room assignné');
+            } else {
                 this.snack(error);
             }
+        }else{
+            console.log ("romm déjà assigné")
         }
+    }
     }
 }
 </script>
