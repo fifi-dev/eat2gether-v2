@@ -42,6 +42,11 @@
 import { LMap, LTileLayer,  } from 'vue2-leaflet';
 import MarkerComponent from './MarkerComponent.vue';
 
+import { supabase } from '../supabase';
+
+import Snack from '@/components/Snack.vue';
+import { mapActions } from 'vuex';
+
 //va permettre de reduire le nombre de marquers si il y a beaucoup
 //import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster';
 //import ClusterIcon from './ClusterIcon'
@@ -61,6 +66,7 @@ export default {
     LMap,
     LTileLayer,
     MarkerComponent,
+    Snack,
     //LCircleMarker,
     //'v-marker-cluster': Vue2LeafletMarkerCluster
     },
@@ -110,9 +116,13 @@ export default {
         coordinates: [ 48.8945223599153, 2.227069848985373 ], 
         review : 'Bar test'
     })
+    this.UserInfo();
     //console.log("New data : " + this.markers);
     },
     methods: {
+    ...mapActions({
+        snack: 'snack/snack',
+    }),
     zoomUpdated (zoom) {
         this.zoom = zoom;
         //console.log(this.markers)
@@ -132,7 +142,7 @@ export default {
         this.location = l;
         console.log(" Ta latitude : " + l.latitude);
         console.log("Ta longitude : " + l.longitude);
-        console.log("localisation : " + this.location);
+        console.log("localisation : " + this.location.longitude);
         //On ajoute un marqueur
         this.markers.push({
         id: 9, 
@@ -141,7 +151,20 @@ export default {
         coordinates: [ l.latitude, l.longitude ], 
         review : 'test affichage'
         })
-
+    },
+    async UserInfo() {
+        let user = await supabase.auth.user();
+        const { data, error } = await this.$supabase
+            .from('users')
+            .select()
+            .match({ auth_id: user.id })
+            .single();
+        if (data) {
+            this.userInfo = data;
+            console.log("nom: " + this.userInfo.first_name);
+        } else {
+            this.snack(error);
+        }
     },
     }
 }

@@ -223,7 +223,6 @@ export default {
         this.snack(error);
       }
     },
-
     async getCourse() {
       const { data, error } = await this.$supabase
         .from('courses')
