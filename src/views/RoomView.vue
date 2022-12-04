@@ -44,21 +44,29 @@
 <script>
 import MapComponent from '@/components/MapComponent.vue'
 //import RoomInfo from '@/components/RoomInfo.vue'
-
+import Snack from '@/components/Snack.vue';
+import { mapActions } from 'vuex';
+import { supabase } from '../supabase';
 export default {
     components: {
+        Snack,
         MapComponent,
         //RoomInfo,
     },
     data() {
         return {
         room: {},
+        userInfo: {},
         };
     },
     mounted() {
         this.getRoom();
+        this.UserInfo();
     },
     methods: {
+        ...mapActions({
+        snack: 'snack/snack',
+        }),
         async getRoom() {
         const { data, error } = await this.$supabase
             .from('rooms')
@@ -67,9 +75,23 @@ export default {
             .single();
         if (data) {
             this.room = data;
+            this.snack("Il y a : " + data.lenght);
         } else {
-            console.log(error);
+            this.snack(error);
         }
+        },
+        async UserInfo() {
+            let user = await supabase.auth.user();
+            const { data, error } = await this.$supabase
+                .from('users')
+                .select()
+                .match({ auth_id: user.id })
+                .single();
+            if (data) {
+                this.userInfo = data;
+            } else {
+                this.snack(error);
+            }
         },
     }
 }
