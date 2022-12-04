@@ -116,6 +116,7 @@ export default {
             waypointMode,
             useZoomParameter,
             showAlternatives,
+            language: 'fr',
         }
 
         const { mapObject } = this.parentContainer
