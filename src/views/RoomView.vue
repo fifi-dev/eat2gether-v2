@@ -6,8 +6,8 @@
         <!-- <RoomInfo/> -->
         <div class="room-info py-3 mt-6 ml-6 text-start">
             <!-- header -->
-            <div>
-                <img class="w-36 mb-6" alt="Vue logo" src="../assets/logo.png">
+            <div class="mt-8">
+               <!--<img class="w-36 mb-6" alt="Vue logo" src="../assets/logo.png">--> 
                 <h1>{{ room.name }}</h1>
             </div>
             <!-- Informations -->
@@ -19,9 +19,14 @@
             <!-- Membres  -->
             <div class="py-3">
                 <h2 class="mb-3">Membres</h2>
-                <p>Fideline</p>
-                <p>Coralie</p>
-                <p>Dona</p>
+                <div 
+                v-for="member in members" 
+                :key="'member-' + member.id" 
+                class="flex items-cente mt-5">
+                    <img class=" w-6 mr-3" :src="member.iconUrl" alt="avatar">
+                    <p>{{ member.first_name }}</p>
+                </div>
+                
             </div>
             <!-- Legende  -->
             <div class="py-3">
@@ -61,11 +66,13 @@ export default {
         room: {},
         room_id: '',
         userInfo: {},
+        members:{},
         };
     },
     mounted() {
         this.getRoom();
         this.UserInfo();
+        
     },
     methods: {
         ...mapActions({
@@ -83,7 +90,7 @@ export default {
             console.log("l'id de la room :" + this.room_id)
             //this.snack("Il y a : " + data.lenght);
             this.assignRoom() 
-            
+            this.getMembers();
         } else {
             this.snack(error);
         }
@@ -102,23 +109,35 @@ export default {
             }
         },
         async assignRoom() {
-        let user = await supabase.auth.user();
-        if ( user.room_id == null ){
-            const { data } = await this.$supabase
-            .from('users')
-            .update({
-                room_id: this.room_id,
-            })
-            .match({ auth_id: user.id });
+            let user = await supabase.auth.user();
+            if ( user.room_id == null ){
+                const { data } = await this.$supabase
+                .from('users')
+                .update({
+                    room_id: this.room_id,
+                })
+                .match({ auth_id: user.id });
+                if (data) {
+                    this.snack('Room assignné');
+                } else {
+                    this.snack(error);
+                }
+            }else{
+                console.log ("romm déjà assigné")
+            }
+        },
+        async getMembers(){
+            const { data, error } = await this.$supabase
+                .from('users')
+                .select()
+                .match({ room_id: this.room_id })
             if (data) {
-                this.snack('Room assignné');
+                this.members = data;
+                console.log(data)
             } else {
                 this.snack(error);
             }
-        }else{
-            console.log ("romm déjà assigné")
         }
-    }
     }
 }
 </script>

@@ -115,7 +115,7 @@ export default {
             useZoomParameter,
             showAlternatives,
             language: 'fr',
-            profile: 'bicycle',
+            //profile: 'bicycle',
 
             addWaypoints: false,
             draggableWaypoints: false,
