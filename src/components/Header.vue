@@ -26,12 +26,10 @@
         class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center lg:items-center lg:justify-center mb-4 md:mb-0"
       >
         <img
-          src="https://pazly.dev/logo.png"
-          style="height: 40px; margin-top: 10px; margin-bottom: 10px"
+          class="w-36"
+          src="../assets/img/logo_white.png"
           alt="logo"
         />
-
-        <span class="ml-3 text-xl">Portal</span>
       </a>
       <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
         <button

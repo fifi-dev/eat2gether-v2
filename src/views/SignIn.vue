@@ -128,7 +128,7 @@ export default {
       });
       if (user) {
         this.snack('connected successfully with : ' + user.email);
-        this.goTo('home');
+        this.goTo('rooms');
       } else {
         this.snack(error);
       }
