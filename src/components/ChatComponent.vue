@@ -1,5 +1,11 @@
 <template>
 <div class="chat-component bg-black mt-6 relative h-[10rem] w-96 overflow-scroll bg-gray-100">
+    <div class="text-white p-2" v-for="message in messages" :key="message.id">
+        <b>
+          {{ message.userName }}
+        </b>
+        : {{ message.text }}
+      </div>
     <textarea 
     name="text" 
     id="text"
@@ -19,11 +25,36 @@
         data () {
             return {
                 text: "",
+                messages: [{
+                    id : 1,
+                    text : "Voici le chat",
+                    userName : "Line",
+                }],
+                userInfo: {},
+                userName: "",
             }
+        },
+        mounted() {
+            this.UserInfo();
+            
         },
         methods: {
         ...mapActions({
             snack: 'snack/snack',
+        async UserInfo() {
+            let user = await supabase.auth.user();
+            const { data, error } = await this.$supabase
+                .from('users')
+                .select()
+                .match({ auth_id: user.id })
+                .single();
+            if (data) {
+                this.userInfo = data;
+                this.userName = this.userInfo.first_name;
+            } else {
+                this.snack(error);
+            }
+        },
         }),
         sendMessage() {
             this.snack("message :" + this.text);
