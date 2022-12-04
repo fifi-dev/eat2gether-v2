@@ -36,7 +36,7 @@ for the database:
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
 link to server folder :
-[Par ici](https://github.com/fifi-dev/node-js_socket_io)
+[Click Here](https://github.com/fifi-dev/node-js_socket_io)
 
 https://github.com/fifi-dev/node-js_socket_io
 
@@ -58,6 +58,9 @@ https://github.com/fifi-dev/node-js_socket_io
 ```sh
   npm install @supabase/supabase-js      
    ```
+
+- [ ] node.js socket io server
+
 
 #### 💾 Installation :
 
