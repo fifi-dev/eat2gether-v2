@@ -25,11 +25,7 @@
         data () {
             return {
                 text: "",
-                messages: [{
-                    id : 1,
-                    text : "Voici le chat",
-                    userName : "Line",
-                }],
+                messages: [],
                 userInfo: {},
                 userName: "",
             }
@@ -39,27 +35,38 @@
             
         },
         methods: {
-        ...mapActions({
-            snack: 'snack/snack',
-        async UserInfo() {
-            let user = await supabase.auth.user();
-            const { data, error } = await this.$supabase
-                .from('users')
-                .select()
-                .match({ auth_id: user.id })
-                .single();
-            if (data) {
-                this.userInfo = data;
-                this.userName = this.userInfo.first_name;
-            } else {
-                this.snack(error);
-            }
-        },
-        }),
-        sendMessage() {
-            this.snack("message :" + this.text);
-            console.log("message :" + this.text);
-        },
+            ...mapActions({
+                snack: 'snack/snack',
+            async UserInfo() {
+                let user = await supabase.auth.user();
+                const { data, error } = await this.$supabase
+                    .from('users')
+                    .select()
+                    .match({ auth_id: user.id })
+                    .single();
+                if (data) {
+                    this.userInfo = data;
+                    this.userName = this.userInfo.first_name;
+                } else {
+                    this.snack(error);
+                }
+            },
+            }),
+            sendMessage() {
+                this.snack("message :" + this.text);
+                console.log("nouveau message de " + this.userName);
+                this.addMessage();
+            },
+
+            addMessage() {
+                const message = {
+                    id: new Date().getTime(),
+                    text: this.text,
+                    userName: this.userName,
+                };
+            this.messages = this.messages.concat(message);
+
+            },
         },
     }
 </script>

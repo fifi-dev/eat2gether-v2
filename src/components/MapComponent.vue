@@ -180,7 +180,7 @@ export default {
             console.log("nom: " + this.userInfo.first_name);
             //On ajoute un marqueur
             this.markers.push({
-            id: 9, 
+            id: new Date().getTime(), 
             name: this.userInfo.first_name, 
             iconUrl: this.userInfo.iconUrl, 
             coordinates: [ this.userInfo.sLocalization[0], this.userInfo.sLocalization[1] ], 
@@ -219,7 +219,7 @@ export default {
             this.restaurant = data;
             //On ajoute un marqueur
             this.markers.push({
-            id: Math.random(), 
+            id: new Date().getTime(), 
             name: this.restaurant.name, 
             iconUrl: this.restaurant.iconUrl, 
             coordinates: [ this.restaurant.s_coordiantes[0], this.restaurant.s_coordiantes[1] ], 
