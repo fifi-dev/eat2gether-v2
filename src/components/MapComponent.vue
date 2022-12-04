@@ -61,10 +61,6 @@ Icon.Default.mergeOptions({
     iconUrl: require('leaflet/dist/images/marker-icon.png'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 })*/
-const waypoints = [
-  { lat: 48.89374094854599, lng: 2.22700032262402 },
-  { lat: 48.8951916533519, lng: 2.2230104684596537 },
-];
 
 export default {
     name: 'MapComponent',
@@ -104,7 +100,10 @@ export default {
             userLat: '',
             userLon: '',
             userRestoId: null,
-            waypoints,
+            waypoints : [
+            { lat: null, lng: null},
+            { lat: null, lng: null },
+            ],
             /*clusterOptions: {
                 spiderfyDistanceMultiplier: 3,
                 iconCreateFunction: cluster => {
@@ -204,6 +203,8 @@ export default {
         .match({ auth_id: user.id });
         if (data) {
             this.snack('User Pos updated !');
+            this.waypoints[0].lat = this.userLat;
+            this.waypoints[0].lng = this.userLon;
         } else {
             this.snack(error);
         }
@@ -225,6 +226,8 @@ export default {
             review : this.restaurant.review, 
             });
             console.log("bravo");
+            this.waypoints[1].lat = this.restaurant.s_coordiantes[0];
+            this.waypoints[1].lng = this.restaurant.s_coordiantes[1];
         }else{
             console.log(error)
         }

@@ -39,7 +39,7 @@ const props = {
     },
     autoRoute: {
     type: Boolean,
-    default: true
+    default: false
     },
     routeWhileDragging: {
     type: Boolean,
@@ -106,7 +106,6 @@ export default {
             useZoomParameter,
             showAlternatives
         } = this
-
         const options = {
             waypoints,
             fitSelectedRoutes,
@@ -117,6 +116,9 @@ export default {
             showAlternatives,
             language: 'fr',
             profile: 'bicycle',
+
+            addWaypoints: false,
+            draggableWaypoints: false,
         }
 
         const { mapObject } = this.parentContainer

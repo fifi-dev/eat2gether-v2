@@ -46,7 +46,7 @@
                     <input 
                     type="radio" 
                     name="option" 
-                    value="../assets/img/blue_uMarker.png" 
+                    value="/img/blue_uMarker.png" 
                     id="1" 
                     v-model="iconUrl"
                     class="peer hidden" 
@@ -64,7 +64,7 @@
                     <input 
                     type="radio" 
                     name="option" 
-                    value="../assets/img/gray_uMarker.png" 
+                    value="/img/gray_uMarker.png" 
                     id="2" 
                     v-model="iconUrl"
                     class="peer hidden" />
@@ -81,7 +81,7 @@
                     <input 
                     type="radio" 
                     name="option" 
-                    value="../assets/img/green_uMarker.png" 
+                    value="/img/green_uMarker.png" 
                     id="3" 
                     v-model="iconUrl"
                     class="peer hidden" />
@@ -98,7 +98,7 @@
                     <input 
                     type="radio" 
                     name="option" 
-                    value="../assets/img/pink_uMarker.png" 
+                    value="/img/pink_uMarker.png" 
                     id="4" 
                     v-model="iconUrl"
                     class="peer hidden" />
@@ -115,7 +115,7 @@
                     <input 
                     type="radio" 
                     name="option" 
-                    value="../assets/img/purple_uMarker.png" 
+                    value="/img/purple_uMarker.png" 
                     v-model="iconUrl"
                     id="5" class="peer hidden" />
                     <label
@@ -131,7 +131,7 @@
                     <input 
                     type="radio" 
                     name="option" 
-                    value="../assets/img/yellow_uMarker.png" 
+                    value="/img/yellow_uMarker.png" 
                     id="6" 
                     v-model="iconUrl"
                     class="peer hidden" />
