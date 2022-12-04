@@ -1,6 +1,6 @@
 <template>
-<div class="chat-component bg-black mt-6 relative h-[10rem] w-96 overflow-scroll bg-gray-100">
-    <div class="text-white p-2" v-for="message in messages" :key="message.id">
+<div class="chat-component mt-6 relative h-[10rem] w-96 overflow-scroll bg-gray-100">
+    <div class="messages text-white p-1" v-for="message in messages" :key="message.id">
         <b>
           {{ message.userName }}
         </b>
@@ -9,7 +9,7 @@
     <textarea 
     name="text" 
     id="text"
-    class="w-100 absolute chat-input bg-indigo-50"
+    class="w-100 bg-black  fixed chat-input bg-indigo-50"
     v-model="text"
     v-on:keyup.enter="sendMessage"></textarea>
 </div>
@@ -73,7 +73,13 @@
 
 <style scoped>
 .chat-input{
-    bottom: 0;
-    width: 100%;
+    bottom: 20px;
+    width: 24rem;
 }
+
+.chat-component{
+    padding-bottom: 10%;
+    background-color: black;
+}
+
 </style>
