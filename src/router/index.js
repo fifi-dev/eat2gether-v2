@@ -55,7 +55,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: RoomView,
     meta: {
-      hideNavbar: true,
+      hideNavbar: false,
       requireAuth: true,
     }
   },

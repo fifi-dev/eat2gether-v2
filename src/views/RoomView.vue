@@ -78,10 +78,12 @@ export default {
 <style>
 
 .room{
-    height: 100vh;
+    height: 90vh;
+    margin-top: 10%;
+    overflow: hidden !important;
 }
     .room-info{
     width: 30%;
-    height: 100%;
+    height: 80%;
     }
 </style>

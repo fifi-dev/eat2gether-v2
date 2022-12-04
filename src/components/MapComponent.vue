@@ -87,6 +87,7 @@ export default {
                 {id: 7, name: 'IIM', iconUrl: require('../assets/img/meet_marker.png'), coordinates: [ 48.89374094854599, 2.227000322624023 ], review : 'Institut de l Internet et du Multimédia'},
             ],
             location: null,
+            userInfo: {},
             /*clusterOptions: {
                 spiderfyDistanceMultiplier: 3,
                 iconCreateFunction: cluster => {
@@ -126,20 +127,22 @@ export default {
             //Si on souhaite recupérer la position tous les 3 secondes 
             //setInterval(this.map.locate(), 3000);
         },
-        onLocationFound(l) {
-            //console.log(l);
-            this.location = l;
-            console.log(" Ta latitude : " + l.latitude);
-            console.log("Ta longitude : " + l.longitude)
-            //On ajoute un marqueur
-            this.markers.push({
-            id: 9, 
-            name: 'Ma position actuelle', 
-            iconUrl: require('../assets/img/green_uMarker.png'), 
-            coordinates: [ l.latitude, l.longitude ], 
-            review : 'test affichage'
-            })
-        },
+    onLocationFound(l) {
+        //console.log(l);
+        this.location = l;
+        console.log(" Ta latitude : " + l.latitude);
+        console.log("Ta longitude : " + l.longitude);
+        console.log("localisation : " + this.location);
+        //On ajoute un marqueur
+        this.markers.push({
+        id: 9, 
+        name: 'Ma position actuelle', 
+        iconUrl: require('../assets/img/green_uMarker.png'), 
+        coordinates: [ l.latitude, l.longitude ], 
+        review : 'test affichage'
+        })
+
+    },
     }
 }
 </script>
@@ -154,8 +157,8 @@ width: 60% !important;
 .map {
 position: absolute;
 width: 70% !important;
-height: 100% !important;
-overflow :hidden
+height: 90% !important;
+overflow :hidden;
 }
 
 .cluster {
